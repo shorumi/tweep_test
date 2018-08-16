@@ -25,3 +25,13 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+.keep
+.DS_Store
+.ruby-version
+
+# DOTENV
+.env
+
+# Simplecov
+coverage/
