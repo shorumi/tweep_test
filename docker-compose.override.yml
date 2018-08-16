@@ -1,0 +1,37 @@
+version: '3.6'
+
+services:
+  tweeps_test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args: 
+        PROJECT_FOLDER: ${PROJECT_FOLDER}
+        RAILS_PORT: ${RAILS_PORT}
+    command: bundle exec rails s -p ${RAILS_PORT} -b ${RAILS_BIND}
+    hostname: tweeps_test.dev
+    domainname: tweeps_test.dev
+    environment:
+      DEBUG: 'true'
+      HTTP_USERNAME: ${HTTP_USERNAME}
+      TWEEPS_URL: ${TWEEPS_API_URL}
+    ports:
+      - "${RAILS_PORT}:${RAILS_PORT}"
+    volumes:
+      - ".:/${PROJECT_FOLDER}"
+    env_file:
+      - .env
+  memcached:
+    ports:
+      - "${MEMCACHED_PORT}:${MEMCACHED_PORT}"
+  pg:
+    image: 'postgres'
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${PG_PWD}
+    env_file:
+      - .env
+networks:
+  default:
+    external:
+      name: tweeps_default

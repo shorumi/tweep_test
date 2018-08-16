@@ -1,0 +1,14 @@
+version: '3.6'
+services:
+  tweeps_test:
+    image: 04091984/tweeps_test
+    
+    depends_on:
+      - pg
+      - memcached
+  
+  pg:
+    image: 'postgres'
+  
+  memcached:
+    image: 'memcached'
