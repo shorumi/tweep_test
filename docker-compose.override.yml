@@ -13,7 +13,7 @@ services:
     domainname: tweeps_test.dev
     environment:
       DEBUG: 'true'
-      HTTP_USERNAME: ${HTTP_USERNAME}
+      TWEEPS_HTTP_USERNAME: ${TWEEPS_HTTP_USERNAME}
       TWEEPS_URL: ${TWEEPS_API_URL}
     ports:
       - "${RAILS_PORT}:${RAILS_PORT}"

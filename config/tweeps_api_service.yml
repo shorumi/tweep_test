@@ -1,0 +1,11 @@
+development:
+  tweeps_uri: <%= ENV['TWEEPS_API_URL'] %>
+  tweeps_http_username:   <%= ENV['TWEEPS_HTTP_USERNAME'] %>
+
+test:
+  tweeps_uri: <%= ENV['TWEEPS_API_URL'] %>
+  tweeps_http_username:   <%= ENV['TWEEPS_HTTP_USERNAME'] %>
+
+production:
+  tweeps_uri: <%= ENV['TWEEPS_API_URL'] %>
+  tweeps_http_username:   <%= ENV['TWEEPS_HTTP_USERNAME'] %>
