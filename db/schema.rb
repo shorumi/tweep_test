@@ -13,12 +13,26 @@
 ActiveRecord::Schema.define(version: 2018_08_18_185703) do
 
   create_table "most_mentions", force: :cascade do |t|
+    t.integer "followers_count"
+    t.string "screen_name"
+    t.string "profile_link"
     t.datetime "created_at", null: false
+    t.string "link"
+    t.integer "retweet_count"
+    t.string "text"
+    t.integer "favourite_count"
     t.datetime "updated_at", null: false
   end
 
   create_table "most_relevants", force: :cascade do |t|
+    t.integer "followers_count"
+    t.string "screen_name"
+    t.string "profile_link"
     t.datetime "created_at", null: false
+    t.string "link"
+    t.integer "retweet_count"
+    t.string "text"
+    t.integer "favourite_count"
     t.datetime "updated_at", null: false
   end
 
