@@ -1,0 +1,2 @@
+class MostRelevant < ApplicationRecord
+end
