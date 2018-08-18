@@ -15,14 +15,14 @@ module JsonHandler
       @http = arguments
     end
 
-    def get(path, params)
-      request_json(:get, path, params)
+    def get(path, params, headers)
+      request_json(:get, path, params, headers)
     end
 
     private
 
-    def request_json(method, path, params)
-      response = request(method, path, params)
+    def request_json(method, path, params, headers)
+      response = request(method, path, params, headers)
       body = JSON.parse(response.body)
 
       OpenStruct.new(code: response.code, body: body)
@@ -35,20 +35,20 @@ module JsonHandler
         rest_verb = args[0]
         path      = args[1]
         params    = args[2]
+        headers   = args[3]
         full_path = join_path_params(path, params)
       else
         super
       end
-      byebug
-      http.method(rest_verb).call(full_path)
+      http.method(rest_verb).call(full_path, headers)
     end
 
     def respond_to_missing?(meth_name, include_private = false)
       meth_name.start_with?('request') || super
     end
 
-    def join_path_params(p, pr)
-      [p, pr].join('?')
+    def join_path_params(path, params)
+      [path, params].join('?')
     end
   end
 end
