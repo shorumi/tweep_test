@@ -10,10 +10,10 @@ RSpec.describe TweepsApiService do
     describe 'GET #tweets, validates' do
       context 'List All tweets, after Authenticate in Tweets API' do
         let(:tweeps_service) { @tweeps_api_service }
-        let(:first_tweet) do
-          tweeps_service.tweets[:statuses][0]
+        let(:first_tweep) do
+          tweeps_service.tweeps.body['statuses'][0]
         end
-        it { expect(first_tweet[:user][0][:name]).to eq('Mraz Kacie') }
+        it { expect(first_tweep['user']['name']).to be_truthy }
       end
 
       context '#' do
