@@ -306,14 +306,14 @@ RSpec.describe Rule::Relevant do
                 }
               ]
             }.to_json
-          )
+          ).call
         end
         context 'persists tweets that mention Locaweb user' do
           let(:mention_locaweb_user) do
-            @relevant.call
+            Tweet.all.count
           end
 
-          it { expect(mention_locaweb_user).to eq('Locaweb') }
+          it { expect(mention_locaweb_user).to eq(1) }
         end
       end
     end

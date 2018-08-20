@@ -2,10 +2,10 @@
 
 module Rule
   class Relevant
-    attr_reader :tweets_json
+    attr_reader :tweeps_json
 
     def initialize(args)
-      @tweets_json = args
+      @tweeps_json = args
     end
 
     def call
@@ -15,11 +15,34 @@ module Rule
     private
 
     def execute_transaction
-      most_relevant
+      twitter_mention
     end
 
-    def most_relevant
-      'Locaweb'
+    def tweep_data
+      parsed_json = JSON.parse(tweeps_json)
+
+      parsed_json['statuses'].collect do |value|
+        TweepBuilder.new(value).call
+      end
+    end
+
+    def locaweb_mentioned?(args)
+      true if args[:id] == 42 && args[:screen_name] == 'locaweb'
+    end
+
+    def twitter_mention
+      tweep_data.each do |item|
+        next unless locaweb_mentioned?(
+          id: item.user_mention_id,
+          screen_name: item.user_mention_screen_name
+        )
+        byebug
+        TweetRepository::TweetRepo.create_tweet(
+          Utils.obj_to_hash(item)
+        )
+        # period_date = catch_volume_month(item.period_date)
+        # next unless period_date.between?(start_date_for_range, last_month)
+      end
     end
   end
 end
