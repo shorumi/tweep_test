@@ -7,6 +7,10 @@ module Utils
         hash[value.to_s.delete('@')] = obj.instance_variable_get(value)
       end
     end
+
+    def hash_key_to_sym(args)
+      args.each_with_object({}) { |(k, v), memo| memo[k.to_sym] = v; }
+    end
   end
 
   class Twitter

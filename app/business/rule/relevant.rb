@@ -36,10 +36,9 @@ module Rule
           id: item.user_mention_id,
           screen_name: item.user_mention_screen_name
         )
-        byebug
-        TweetRepository::TweetRepo.create_tweet(
-          Utils.obj_to_hash(item)
-        )
+        hash_item = Utils.obj_to_hash(item)
+        hash_sym_item = Utils.hash_key_to_sym(hash_item)
+        TweetRepository::TweetRepo.create_tweet(hash_sym_item)
         # period_date = catch_volume_month(item.period_date)
         # next unless period_date.between?(start_date_for_range, last_month)
       end
