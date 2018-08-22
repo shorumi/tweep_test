@@ -36,7 +36,7 @@ module Rule
 
     def apply_locaweb_rules
       tweep_data.each do |item|
-        next unless locaweb_mentioned?(item) && replied_to_locaweb?(item)
+        next unless locaweb_mentioned?(item) && !replied_to_locaweb?(item)
         hash_item = Utils.obj_to_hash(item)
         hash_sym_item = Utils.hash_key_to_sym(hash_item)
         TweetRepository::TweetRepo.create_tweet(hash_sym_item)
