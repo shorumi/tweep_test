@@ -10,7 +10,9 @@ RSpec.describe TweetRepository::TweetRepo do
       end
 
       subject(:tweet) do
-        TweetRepository::TweetRepo.create_tweet(Utils.obj_to_hash(tweep_h))
+        TweetRepository::TweetRepo.create_tweet(
+          Utils.hash_key_to_sym(Utils.obj_to_hash(Tweep.new(tweep_h)))
+         )
       end
 
       it { expect(tweet.persisted?).to eq(true) }

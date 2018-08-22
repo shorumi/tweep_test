@@ -10,7 +10,9 @@ RSpec.describe UserRepository::UserRepo do
       end
 
       subject(:user) do
-        UserRepository::UserRepo.create_user(Utils.obj_to_hash(tweep_h))
+        UserRepository::UserRepo.create_user(
+          Utils.hash_key_to_sym(Utils.obj_to_hash(Tweep.new(tweep_h)))
+         )
       end
 
       it { expect(user.persisted?).to eq(true) }

@@ -121,6 +121,8 @@ RSpec.describe 'app/builders/tweep_builder.rb' do
         expect(tweep.tweet_link).to eq('https://twitter.com/locaweb/status/550602')
         expect(tweep.in_reply_to_user_id).to eq(42)
         expect(tweep.in_reply_to_screen_name).to eq('locaweb')
+        expect(tweep.tweet_external_id).to eq(550602)
+        expect(tweep.user_external_id).to eq(242570)
       end
     end
   end

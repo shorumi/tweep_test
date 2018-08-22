@@ -10,6 +10,7 @@ RSpec.describe User, type: :model do
       expect(subject).to respond_to(:screen_name)
       expect(subject).to respond_to(:followers_count)
       expect(subject).to respond_to(:profile_link)
+      expect(subject).to respond_to(:user_external_id)
       expect(subject).to have_many(:tweets)
     end
   end

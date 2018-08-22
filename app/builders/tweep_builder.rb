@@ -26,7 +26,9 @@ class TweepBuilder
       tweet_created_at:           statuses['created_at'],
       tweet_link:                 tweet_link,
       in_reply_to_user_id:        statuses['in_reply_to_user_id'],
-      in_reply_to_screen_name:    statuses['in_reply_to_screen_name']
+      in_reply_to_screen_name:    statuses['in_reply_to_screen_name'],
+      tweet_external_id:          statuses['id'],
+      user_external_id:           statuses_user['id']
     }
   end
 

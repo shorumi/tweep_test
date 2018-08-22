@@ -7,7 +7,8 @@ module TweetRepository
         filtered_args = args.except(
           :user_mention_id, :user_mention_screen_name,
           :followers_count, :profile_link, :retweeted,
-          :retweet_count, :in_reply_to_user_id, :in_reply_to_screen_name
+          :retweet_count, :in_reply_to_user_id, :in_reply_to_screen_name,
+          :user_external_id
         )
         user = create_user(args)
         user.tweets.create!(filtered_args)

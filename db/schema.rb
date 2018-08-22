@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2018_08_18_185703) do
     t.string "text", limit: 255
     t.datetime "tweet_created_at"
     t.string "tweet_link"
+    t.integer "tweet_external_id", null: false
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 2018_08_18_185703) do
     t.string "screen_name"
     t.integer "followers_count"
     t.string "profile_link"
+    t.integer "user_external_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

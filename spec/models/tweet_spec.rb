@@ -10,6 +10,7 @@ RSpec.describe Tweet, type: :model do
       expect(subject).to respond_to(:text)
       expect(subject).to respond_to(:tweet_created_at)
       expect(subject).to respond_to(:tweet_link)
+      expect(subject).to respond_to(:tweet_external_id) 
       expect(subject).to belong_to(:user)
     end
   end

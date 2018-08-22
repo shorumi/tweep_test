@@ -12,6 +12,8 @@ FactoryBot.define do
     text { '@locaweb Use the optical EXE pixel, then you can program the redundant card!' }
     tweet_created_at { 'Mon Sep 24 03:35:21 +0000 2012' }
     tweet_link { 'https://twitter.com/locaweb/status/550602' }
+    tweet_external_id { 12345 }
+    user_external_id  { 42 }
 
     initialize_with { attributes }
   end
