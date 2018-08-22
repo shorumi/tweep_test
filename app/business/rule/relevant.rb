@@ -15,7 +15,7 @@ module Rule
     private
 
     def execute_transaction
-      twitter_mention
+      noreply_locaweb
     end
 
     def tweep_data
@@ -30,11 +30,27 @@ module Rule
       true if args[:id] == 42 && args[:screen_name] == 'locaweb'
     end
 
+    def replied_to_locaweb?(args)
+      true if args[:id] == 42 && args[:reply_screen_name] == 'locaweb'
+    end
+
     def twitter_mention
       tweep_data.each do |item|
         next unless locaweb_mentioned?(
           id: item.user_mention_id,
           screen_name: item.user_mention_screen_name
+        )
+        hash_item = Utils.obj_to_hash(item)
+        hash_sym_item = Utils.hash_key_to_sym(hash_item)
+        TweetRepository::TweetRepo.create_tweet(hash_sym_item)
+      end
+    end
+
+    def noreply_locaweb
+      tweep_data.each do |item|
+        next unless replied_to_locaweb?(
+          id: item.in_reply_to_user_id,
+          reply_screen_name: item.in_reply_to_screen_name
         )
         hash_item = Utils.obj_to_hash(item)
         hash_sym_item = Utils.hash_key_to_sym(hash_item)

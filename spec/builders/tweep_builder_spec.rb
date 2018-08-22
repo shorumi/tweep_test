@@ -119,6 +119,8 @@ RSpec.describe 'app/builders/tweep_builder.rb' do
         expect(tweep.text).to eq('@locaweb Use the optical EXE pixel, then you can program the redundant card!')
         expect(tweep.tweet_created_at).to eq('Mon Sep 24 03:35:21 +0000 2012')
         expect(tweep.tweet_link).to eq('https://twitter.com/locaweb/status/550602')
+        expect(tweep.in_reply_to_user_id).to eq(42)
+        expect(tweep.in_reply_to_screen_name).to eq('locaweb')
       end
     end
   end
