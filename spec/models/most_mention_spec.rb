@@ -13,6 +13,7 @@ RSpec.describe MostMention, type: :model do
       expect(subject).to respond_to(:retweet_count)
       expect(subject).to respond_to(:text)
       expect(subject).to respond_to(:favourite_count)
+      expect(subject).to belong_to(:user)
     end
   end
 end

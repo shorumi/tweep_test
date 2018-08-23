@@ -39,7 +39,9 @@ module Rule
         next unless locaweb_mentioned?(item) && !replied_to_locaweb?(item)
         hash_item = Utils.obj_to_hash(item)
         hash_sym_item = Utils.hash_key_to_sym(hash_item)
-        TweetRepository::TweetRepo.create_tweet(hash_sym_item)
+        MostRelevantRepository::MostRelevantRepo.create_most_relevant(hash_sym_item)
+        MostMentionRepository::MostMentionRepo.create_most_mention(hash_sym_item)
+#         TweetRepository::TweetRepo.create_tweet(hash_sym_item)
       end
     end
   end

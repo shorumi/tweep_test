@@ -317,9 +317,16 @@ RSpec.describe Rule::Relevant do
          }'
           Rule::Relevant.new(@tweep_json).call
         end
-        context 'persists tweets that mention Locaweb user and are not reply to the Locaweb tweets' do
+        context 'persists most relevant tweets based on Locaweb user mention and is not a reply to the Locaweb tweets' do
           let(:locaweb_rule) do
-            Tweet.all.count
+            MostRelevant.all.count
+          end
+
+          it { expect(locaweb_rule).to eq(1) }
+        end
+        context 'persists most mentioned tweets based on Locaweb user mention and is not a reply to the Locaweb tweets' do
+          let(:locaweb_rule) do
+            MostMention.all.count
           end
 
           it { expect(locaweb_rule).to eq(1) }

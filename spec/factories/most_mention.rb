@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :most_mention do
+    user
     followers_count { 100 }
     screen_name     { 'pele' }
     profile_link    { 'https://twitter.com/vandervort_raven_i' }

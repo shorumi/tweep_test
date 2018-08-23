@@ -21,7 +21,9 @@ ActiveRecord::Schema.define(version: 2018_08_18_185703) do
     t.integer "retweet_count"
     t.string "text"
     t.integer "favourite_count"
+    t.integer "user_id"
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_most_mentions_on_user_id"
   end
 
   create_table "most_relevants", force: :cascade do |t|
