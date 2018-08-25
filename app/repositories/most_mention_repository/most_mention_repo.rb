@@ -3,6 +3,12 @@
 module MostMentionRepository
   class MostMentionRepo
     class << self
+       def lists_all_ordered
+        MostMention.order(
+          followers_count: :desc, retweet_count: :desc, favourite_count: :desc
+        )
+      end
+      
       def create_most_mention(args)
         user = create_user(args)
         user.most_mentions.create!(

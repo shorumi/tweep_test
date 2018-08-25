@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-def load_most_relevant
+def load_most_locaweb_factories(resource)
   1.upto(4) do |i|
     FactoryBot.create(
-      :most_relevant_traits,
+      resource,
       trait_row(i)
     )
   end

@@ -4,7 +4,7 @@ require 'rails_helper'
 require 'spec_helper'
 require 'support/helpers'
 
-RSpec.describe MostRelevantsController, type: :controller do
+RSpec.describe MostMentionsController, type: :controller do
   let(:response_body) { JSON.parse(response.body) }
 
   shared_examples 'a successful response' do
@@ -17,27 +17,27 @@ RSpec.describe MostRelevantsController, type: :controller do
     let(:records) { response_body['data'].size }
 
     before do
-      load_most_locaweb_factories(:most_relevant_traits)
+      load_most_locaweb_factories(:most_mention_traits)
       get :index, params: param, format: :json
     end
 
     context 'and no filter at all' do
       let(:param) { {} }
       it_behaves_like 'a successful response'
-      it 'returns number of variation deviation notes correctly' do
+      it 'returns a number of most mention resources correctly' do
         expect(records).to eq(4)
       end
     end
   end
 
-  context 'returns most relevants tweets as json' do
+  context 'returns most mentioned tweets as json' do
     describe '#index' do
       before(:each) do
-        2.times { FactoryBot.create(:most_relevant) }
+        2.times { FactoryBot.create(:most_mention) }
         get :index, format: :json
       end
       it_behaves_like 'a successful response'
-      it 'returns number of most relevants tweets correctly' do
+      it 'returns number of most mentioned tweets correctly' do
         expect(response_body['data'].size).to eq(2)
       end
     end
