@@ -7,7 +7,7 @@ RSpec.describe Rule::Relevant do
     describe '.Relevant' do
       describe '#most_relevant' do
         before(:each) do
-          @tweep_json = '
+          @tweep_json = JSON.parse('
           {
             "statuses":[
                {
@@ -312,9 +312,9 @@ RSpec.describe Rule::Relevant do
                   "in_reply_to_screen_name":"ressie_smitham_miss",
                   "source":"web",
                   "in_reply_to_status_id":246482
-               }
-            ]
-         }'
+                }
+              ]
+         }')
           Rule::Relevant.new(@tweep_json).call
         end
         context 'persists most relevant tweets based on Locaweb user mention and is not a reply to the Locaweb tweets' do

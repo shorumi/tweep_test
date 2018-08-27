@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class UserResource < JSONAPI::Resource
+  immutable
   caching
-  attributes :screen_name
-  
+  attribute :screen_name
+
   has_many :most_mentions
 end
