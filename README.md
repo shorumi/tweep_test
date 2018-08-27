@@ -14,7 +14,7 @@ The project was created with the mindset to SOLID and TDD design patterns.
 - Created some **Entities** to manipulate object's data.
 - Attempted to use a lot of **Dependency Injection**.
 - Extracted and created some **Services** with **Single Responsibility** on mind.
-- The code is **98.39%** covered with **RSpec** tests
+- The code is **98.39%** covered with **RSpec** tests, take a look at `coverage/index.html`
 - Service consumes data from **Tweep API**
 - Memcached with Dalli valid for 1 day.
 
