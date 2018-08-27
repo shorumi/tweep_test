@@ -3,6 +3,11 @@
 module UserRepository
   class UserRepo
     class << self
+      def lists_all
+        User.all
+      end
+
+
       def create_user(args)
         filtered_args = args.except(
           :favourites_count, :text, :user_mention_screen_name,
