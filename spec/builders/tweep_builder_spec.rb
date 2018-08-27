@@ -110,7 +110,7 @@ RSpec.describe 'app/builders/tweep_builder.rb' do
 
       it do
         expect(tweep.user_mention_id).to eq(42)
-        expect(tweep.user_mention_screen_name).to eq('locaweb')
+        expect(tweep.screen_name).to eq('locaweb')
         expect(tweep.followers_count).to eq(434)
         expect(tweep.profile_link).to eq('https://twitter.com/locaweb')
         expect(tweep.retweeted).to eq(true)

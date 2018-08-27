@@ -16,7 +16,7 @@ class TweepBuilder
   def tweep_hash
     {
       user_mention_id:            user_mentions_id,
-      user_mention_screen_name:   user_mention_screen_name,
+      screen_name:                user_mention_screen_name,
       followers_count:            statuses_user['followers_count'],
       profile_link:               profile_link,
       retweeted:                  statuses['retweeted'],

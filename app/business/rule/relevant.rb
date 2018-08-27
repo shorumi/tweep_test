@@ -19,7 +19,7 @@ module Rule
     end
 
     def tweep_data
-      parsed_json = JSON.parse(tweeps_json)
+      parsed_json = tweeps_json
 
       parsed_json['statuses'].collect do |value|
         TweepBuilder.new(value).call
@@ -27,7 +27,7 @@ module Rule
     end
 
     def locaweb_mentioned?(item)
-      true if item.user_mention_id == 42 && item.user_mention_screen_name == 'locaweb'
+      true if item.user_mention_id == 42 && item.screen_name == 'locaweb'
     end
 
     def replied_to_locaweb?(item)
@@ -41,7 +41,6 @@ module Rule
         hash_sym_item = Utils.hash_key_to_sym(hash_item)
         MostRelevantRepository::MostRelevantRepo.create_most_relevant(hash_sym_item)
         MostMentionRepository::MostMentionRepo.create_most_mention(hash_sym_item)
-#         TweetRepository::TweetRepo.create_tweet(hash_sym_item)
       end
     end
   end

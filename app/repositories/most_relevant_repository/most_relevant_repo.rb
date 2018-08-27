@@ -8,12 +8,13 @@ module MostRelevantRepository
           followers_count: :desc, retweet_count: :desc, favourite_count: :desc
         )
       end
-      
+
       def create_most_relevant(args)
         MostRelevant.create!(
-          followers_count: args[:followers_count], screen_name: args[:user_mention_screen_name], 
-          profile_link: args[:profile_link], link: args[:tweet_link], 
-          retweet_count: args[:retweet_count], text: args[:text], 
+          followers_count: args[:followers_count],
+          screen_name: args[:user_mention_screen_name],
+          profile_link: args[:profile_link], link: args[:tweet_link],
+          retweet_count: args[:retweet_count], text: args[:text],
           favourite_count: args[:favourites_count]
         )
       end
