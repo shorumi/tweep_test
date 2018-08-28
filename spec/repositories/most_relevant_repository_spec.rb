@@ -12,7 +12,7 @@ RSpec.describe MostRelevantRepository::MostRelevantRepo do
       subject(:tweet) do
         MostRelevantRepository::MostRelevantRepo.create_most_relevant(
           Utils.hash_key_to_sym(Utils.obj_to_hash(Tweep.new(tweep_h)))
-         )
+        )
       end
 
       it { expect(tweet.persisted?).to eq(true) }

@@ -11,7 +11,7 @@ FactoryBot.define do
     retweet_count   { 500 }
     text            { 'We need to naviga @locaweb' }
     favourite_count { 10 }
-    
+
     factory :most_mention_traits do
       trait :row01 do
         user

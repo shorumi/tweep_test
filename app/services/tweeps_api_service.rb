@@ -3,11 +3,7 @@
 module TweepsApiService
   class Client
     def tweeps
-      tweeps_api_connection.get(
-        '/tweeps',
-        '',
-        Username: username
-      )
+      tweeps_api_connection.get('/tweeps', '', Username: username)
     end
 
     private

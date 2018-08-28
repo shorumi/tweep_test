@@ -8,6 +8,6 @@ FactoryBot.define do
     text { 'cucumber with parrots and rice @yourname' }
     tweet_created_at { 'Mon Apr 26 06:01:55 +0000 2010' }
     tweet_link { 'https://twitter.com/vandervort_raven_i/status/812382' }
-    tweet_external_id { 12345 }
+    tweet_external_id { 12_345 }
   end
 end
