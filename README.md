@@ -1,4 +1,4 @@
-# Tweets listing explanation
+# Tweets Job Challenge
 
 ## Tech Stack
 - Docker Compose
@@ -9,7 +9,8 @@
 - JSONAPI compliance
 - SOLID design pattern
 
-The project was created with the mindset to SOLID and TDD design patterns.
+**API QUERYING WAS NOT AVAILABLE IN THE EXTERNAL MOCKED API PROVIDED.**
+- The project was created with the mindset to SOLID and TDD design patterns.
 - I extracted all the business logic to some **Business Modules**
 - Created some **Entities** to manipulate object's data.
 - Attempted to use a lot of **Dependency Injection**.
