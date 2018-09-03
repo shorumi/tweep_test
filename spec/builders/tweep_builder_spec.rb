@@ -26,6 +26,16 @@ RSpec.describe 'app/builders/tweep_builder.rb' do
                             0,
                             8
                         ]
+                    },
+                    {
+                        "screen_name": "arroto",
+                        "name": "Arroto",
+                        "id": 43,
+                        "id_str": "43",
+                        "indices": [
+                            0,
+                            8
+                        ]
                     }
                 ]
             },
@@ -108,21 +118,27 @@ RSpec.describe 'app/builders/tweep_builder.rb' do
         TweepBuilder.new(tweep_json).call
       end
 
-      it do
-        expect(tweep.user_mention_id).to eq(42)
-        expect(tweep.screen_name).to eq('locaweb')
+      it 'Tweep is populated correctly' do
+        expect(tweep.user_mention_id).to eq([42, 43])
+        expect(tweep.user_mention_screen_name).to eq(%w[locaweb arroto])
+        expect(tweep.screen_name).to eq('iii_shields_candice')
         expect(tweep.followers_count).to eq(434)
-        expect(tweep.profile_link).to eq('https://twitter.com/locaweb')
+        expect(tweep.profile_link).to eq(
+          'https://twitter.com/iii_shields_candice'
+        )
         expect(tweep.retweeted).to eq(true)
         expect(tweep.retweet_count).to eq(1)
         expect(tweep.favourites_count).to eq(30)
-        expect(tweep.text).to eq('@locaweb Use the optical EXE pixel, then you can program the redundant card!')
+        expect(tweep.text).to eq('@locaweb Use the optical EXE pixel, ' \
+                'then you can program the redundant card!')
         expect(tweep.tweet_created_at).to eq('Mon Sep 24 03:35:21 +0000 2012')
-        expect(tweep.tweet_link).to eq('https://twitter.com/locaweb/status/550602')
+        expect(tweep.tweet_link).to eq(
+          'https://twitter.com/iii_shields_candice/status/550602'
+        )
         expect(tweep.in_reply_to_user_id).to eq(42)
         expect(tweep.in_reply_to_screen_name).to eq('locaweb')
-        expect(tweep.tweet_external_id).to eq(550602)
-        expect(tweep.user_external_id).to eq(242570)
+        expect(tweep.tweet_external_id).to eq(550_602)
+        expect(tweep.user_external_id).to eq(242_570)
       end
     end
   end

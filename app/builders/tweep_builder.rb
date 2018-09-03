@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class TweepBuilder
-  attr_reader :statuses
+  attr_reader :statuses, :screen_name
 
   def initialize(argument)
     @statuses = argument
+    @screen_name = user_screen_name
   end
 
   def call
@@ -16,7 +17,8 @@ class TweepBuilder
   def tweep_hash
     {
       user_mention_id:            user_mentions_id,
-      screen_name:                user_mention_screen_name,
+      user_mention_screen_name:   user_mention_screen_name,
+      screen_name:                screen_name,
       followers_count:            statuses_user['followers_count'],
       profile_link:               profile_link,
       retweeted:                  statuses['retweeted'],
@@ -44,16 +46,24 @@ class TweepBuilder
     statuses['entities']['user_mentions'].empty?
   end
 
+  def user_screen_name
+    statuses_user['screen_name']
+  end
+
+  def statuses_user_mentions
+    statuses['entities']['user_mentions']
+  end
+
   def user_mentions_id
-    user_mentions? ? nil : statuses['entities']['user_mentions'][0]['id']
+    has_mention_id = -> { statuses_user_mentions.map { |item| item['id'] } }
+    user_mentions? ? nil : has_mention_id.call
   end
 
   def user_mention_screen_name
-    if user_mentions?
-      nil
-    else
-      statuses['entities']['user_mentions'][0]['screen_name']
-    end
+    has_mention_screen_name = lambda {
+      statuses_user_mentions.map { |item| item['screen_name'] }
+    }
+    user_mentions? ? nil : has_mention_screen_name.call
   end
 
   def tweet_id
@@ -61,15 +71,13 @@ class TweepBuilder
   end
 
   def profile_link
-    return Utils::Twitter.create_profile_link(user_mention_screen_name) unless
-    user_mention_screen_name.nil?
+    Utils::Twitter.create_profile_link(screen_name) if screen_name
   end
 
   def tweet_link
     tweet_link_args = { tweet_id: tweet_id,
-                        screen_name: user_mention_screen_name }
+                        screen_name: screen_name }
 
-    return Utils::Twitter.create_tweet_link(tweet_link_args) unless
-    user_mention_screen_name.nil?
+    Utils::Twitter.create_tweet_link(tweet_link_args) if screen_name
   end
 end

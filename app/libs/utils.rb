@@ -9,19 +9,24 @@ module Utils
     end
 
     def hash_key_to_sym(args)
-      args.each_with_object({}) { |(k, v), memo| memo[k.to_sym] = v; }
+      args.each_with_object({}) { |(key, value), memo| memo[key.to_sym] = value }
     end
   end
 
   class Twitter
     class << self
       def create_profile_link(args)
-        'https://twitter.com/' + args
+        twitter_url + args
       end
 
       def create_tweet_link(args)
-        'https://twitter.com/' +
-          args[:screen_name] + '/status/' + args[:tweet_id].to_s
+        twitter_url + args[:screen_name] + '/status/' + args[:tweet_id].to_s
+      end
+
+      private
+
+      def twitter_url
+        'https://twitter.com/'
       end
     end
   end
