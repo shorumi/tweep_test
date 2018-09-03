@@ -5,7 +5,7 @@ module TweetRepository
     class << self
       def create_tweet(args)
         filtered_args = args.except(
-          :user_mention_id, :screen_name,
+          :user_mention_id, :screen_name, :user_mention_screen_name,
           :followers_count, :profile_link, :retweeted,
           :retweet_count, :in_reply_to_user_id, :in_reply_to_screen_name,
           :user_external_id
