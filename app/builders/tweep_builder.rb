@@ -55,15 +55,14 @@ class TweepBuilder
   end
 
   def user_mentions_id
-    has_mention_id = -> { statuses_user_mentions.map { |item| item['id'] } }
-    user_mentions? ? nil : has_mention_id.call
+    has_mention_id = statuses_user_mentions.map { |item| item['id'] }
+    user_mentions? ? nil : has_mention_id
   end
 
   def user_mention_screen_name
-    has_mention_screen_name = lambda {
+    has_mention_screen_name =
       statuses_user_mentions.map { |item| item['screen_name'] }
-    }
-    user_mentions? ? nil : has_mention_screen_name.call
+    user_mentions? ? nil : has_mention_screen_name
   end
 
   def tweet_id
