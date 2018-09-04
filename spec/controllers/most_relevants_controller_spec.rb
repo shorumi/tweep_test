@@ -2,7 +2,6 @@
 
 require 'rails_helper'
 require 'spec_helper'
-require 'support/helpers'
 
 RSpec.describe MostRelevantsController, type: :controller do
   let(:response_body) { JSON.parse(response.body) }
@@ -17,7 +16,7 @@ RSpec.describe MostRelevantsController, type: :controller do
     let(:records) { response_body['data'].size }
 
     before do
-      load_most_locaweb_factories(:most_relevant_traits)
+      FactoryBot.create_list(:most_relevant, 4)
       get :index, params: param, format: :json
     end
 
@@ -33,7 +32,7 @@ RSpec.describe MostRelevantsController, type: :controller do
   context 'returns most relevants tweets as json' do
     describe '#index' do
       before(:each) do
-        2.times { FactoryBot.create(:most_relevant) }
+        FactoryBot.create_list(:most_relevant, 2)
         get :index, format: :json
       end
       it_behaves_like 'a successful response'

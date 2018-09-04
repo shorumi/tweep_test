@@ -2,7 +2,6 @@
 
 require 'rails_helper'
 require 'spec_helper'
-require 'support/helpers'
 
 RSpec.describe MostMentionsController, type: :controller do
   let(:response_body) { JSON.parse(response.body) }
