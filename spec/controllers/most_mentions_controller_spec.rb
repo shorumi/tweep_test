@@ -17,7 +17,7 @@ RSpec.describe MostMentionsController, type: :controller do
     let(:records) { response_body['data'].size }
 
     before do
-      load_most_locaweb_factories(:most_mention_traits)
+      FactoryBot.create_list(:most_mention, 4)
       get :index, params: param, format: :json
     end
 

@@ -54,6 +54,8 @@ group :test do
   gem 'simplecov', require: false
   # Better matchers for Rspec
   gem 'shoulda-matchers', '~> 3.1'
+  # Faker data
+  gem 'faker'
 end
 
 group :development do

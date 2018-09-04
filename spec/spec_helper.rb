@@ -4,6 +4,7 @@ require 'vcr'
 require 'webmock/rspec'
 require 'simplecov'
 require 'factory_bot_rails'
+require 'faker'
 
 SimpleCov.start
 
