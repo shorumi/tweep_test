@@ -15,7 +15,7 @@ RSpec.describe MostMentionsController, type: :controller do
   context 'when filtering' do
     let(:records) { response_body['data'].size }
 
-    before do
+    before(:each) do
       FactoryBot.create_list(:most_mention, 4)
       get :index, params: param, format: :json
     end
@@ -32,7 +32,7 @@ RSpec.describe MostMentionsController, type: :controller do
   context 'returns most mentioned tweets as json' do
     describe '#index' do
       before(:each) do
-        2.times { FactoryBot.create(:most_mention) }
+        FactoryBot.create_list(:most_mention, 2)
         get :index, format: :json
       end
       it_behaves_like 'a successful response'

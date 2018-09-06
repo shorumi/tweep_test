@@ -29,18 +29,23 @@ module Rule
     end
 
     def locaweb_mentioned?(item)
-      true if item.user_mention_id.include?(LOCAWEB_ID) &&
-              item.user_mention_screen_name.include?(LOCAWEB_NAME)
+      if item.user_mention_id
+        item.user_mention_id.include?(LOCAWEB_ID) &&
+          item.user_mention_screen_name.include?(LOCAWEB_NAME)
+      else
+        false
+      end
     end
 
     def replied_to_locaweb?(item)
-      true if item.in_reply_to_user_id == LOCAWEB_ID &&
-              item.in_reply_to_screen_name == LOCAWEB_NAME
+      item.in_reply_to_screen_name == LOCAWEB_NAME &&
+        item.in_reply_to_user_id == LOCAWEB_ID
     end
 
     def apply_locaweb_rules
       tweep_data.each do |item|
-        next unless locaweb_mentioned?(item) && !replied_to_locaweb?(item)
+        next unless locaweb_mentioned?(item) == true &&
+                    replied_to_locaweb?(item) == false
         hash_item = Utils.obj_to_hash(item)
         hash_sym_item = Utils.hash_key_to_sym(hash_item)
         MostRelevantRepository::MostRelevantRepo

@@ -14,7 +14,7 @@ module UserRepository
           :retweeted, :retweet_count, :in_reply_to_user_id,
           :in_reply_to_screen_name, :tweet_external_id
         )
-        User.create!(filtered_args)
+        User.where(filtered_args).first_or_create!
       end
     end
   end
