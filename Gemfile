@@ -56,6 +56,8 @@ group :test do
   gem 'shoulda-matchers', '~> 3.1'
   # Faker data
   gem 'faker'
+  # Handles database tests cleaning
+  gem 'database_cleaner'
 end
 
 group :development do
