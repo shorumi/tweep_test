@@ -31,6 +31,12 @@ gem 'puma', '~> 3.11'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# Use redis-rails for Sidekiq
+gem 'redis-rails', '~> 5'
+# Use sidekiq to handle queue background workers
+gem 'sidekiq'
+
+
 # Postgres Database
 gem 'pg'
 
@@ -44,6 +50,12 @@ group :development, :test do
   # Create factories for models
   gem 'factory_bot_rails'
   gem 'dotenv-rails'
+  # Test whenever cron jobs
+  gem 'whenever-test'
+  # Whenever is a Ruby gem that provides a clear syntax for writing and deploying
+  # cron jobs.
+  gem 'whenever', :require => false
+
 end
 
 group :test do

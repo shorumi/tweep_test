@@ -8,9 +8,13 @@ services:
       args: 
         PROJECT_FOLDER: ${PROJECT_FOLDER}
         RAILS_PORT: ${RAILS_PORT}
+        RAILS_ENV: ${RAILS_ENV}
+        TZ_DATA: ${TZ_DATA}
     command: bundle exec rails s -p ${RAILS_PORT} -b ${RAILS_BIND}
     hostname: tweeps_test.dev
     domainname: tweeps_test.dev
+    stdin_open: true
+    tty: true
     environment:
       DEBUG: 'true'
       TWEEPS_HTTP_USERNAME: ${TWEEPS_HTTP_USERNAME}
@@ -21,6 +25,9 @@ services:
       - ".:/${PROJECT_FOLDER}"
     env_file:
       - .env
+    depends_on:
+      - pg
+  
   memcached:
     ports:
       - "${MEMCACHED_PORT}:${MEMCACHED_PORT}"
@@ -31,6 +38,26 @@ services:
       POSTGRES_PASSWORD: ${PG_PWD}
     env_file:
       - .env
+
+  redis:
+    command: redis-server --port ${REDIS_PORT} --requirepass yourpassword
+    ports:
+      - "${REDIS_PORT}:${REDIS_PORT}"
+    volumes:
+      - './redis:/var/lib/redis/data'
+
+  sidekiq:
+    build:
+      context: .
+      args:
+        PROJECT_FOLDER: "${PROJECT_FOLDER}"
+        RAILS_ENV: ${RAILS_ENV}
+    command: sidekiq -C config/sidekiq.yml.erb
+    volumes:
+      - ".:/${PROJECT_FOLDER}"
+    env_file:
+      - '.env'
+
 networks:
   default:
     external:

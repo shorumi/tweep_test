@@ -4,11 +4,16 @@ services:
     image: 04091984/tweeps_test
     
     depends_on:
-      - pg
       - memcached
-  
-  pg:
-    image: 'postgres'
+      - redis
+      - sidekiq
+
+  redis:
+    image: 'redis:3.2-alpine'
+
+  sidekiq:
+    depends_on:
+      - 'redis'
   
   memcached:
     image: 'memcached'
