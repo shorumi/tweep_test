@@ -3,7 +3,7 @@
 class TweepsJob < ApplicationJob
   queue_as :default
 
-  def perform
+  def perform_now
     Rule::Relevant.new(TweepsApiService::Client.new.tweeps.body).call
   end
 end

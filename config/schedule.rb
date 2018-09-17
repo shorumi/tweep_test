@@ -29,6 +29,6 @@ set :output, error: 'log/crontab_error.log', standard: 'log/crontab.log'
 set :environment, rails_env
 ENV.each { |k, v| env(k, v) }
 
-every 1.minute do
-  command 'ls -lha'
+every 10.minute do
+  runner 'TweepsJob.perform_now'
 end

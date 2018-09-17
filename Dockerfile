@@ -27,8 +27,5 @@ WORKDIR $PROJECT_FOLDER
 RUN gem install bundler --pre
 RUN bundle install --binstubs
 COPY . .
-RUN bundle exec whenever --user root
 RUN bundle exec whenever --update-crontab
-RUN crontab -l
-CMD cron
 EXPOSE ${RAILS_PORT}

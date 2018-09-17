@@ -10,7 +10,8 @@ services:
         RAILS_PORT: ${RAILS_PORT}
         RAILS_ENV: ${RAILS_ENV}
         TZ_DATA: ${TZ_DATA}
-    command: bundle exec rails s -p ${RAILS_PORT} -b ${RAILS_BIND}
+    command: > 
+        bash -c "cron && bundle exec rails s -p ${RAILS_PORT} -b ${RAILS_BIND}"
     hostname: tweeps_test.dev
     domainname: tweeps_test.dev
     stdin_open: true
