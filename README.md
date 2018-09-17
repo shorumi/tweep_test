@@ -6,6 +6,9 @@
 - Rails 5.2.1
 - PostgreSQL
 - Memcached
+- Sidekiq
+- Redis
+- Whenever JOBS
 - JSONAPI compliance
 - SOLID design pattern
 
@@ -18,6 +21,7 @@
 - The code is **98.39%** covered with **RSpec** tests, take a look at `coverage/index.html`
 - Service consumes data from **Tweep API**
 - Memcached with Dalli valid for 1 day.
+- There is a job that run every 10 minutes, it runs the Tweeps Rules and then records it on the local database.
 
 
 ## Stating the project
