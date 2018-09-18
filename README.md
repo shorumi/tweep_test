@@ -24,7 +24,7 @@
 - There is a job that run every 10 minutes, it runs the Tweeps Rules and then records it on the local database.
 
 
-## Stating the project
+## Starting the project
 - Rename `.env.development` to `.env`
 - Add an authorized email to the `TWEEPS_HTTP_USERNAME` ENV VAR inside the `.env` file
 - In a unix terminal tab run: 
