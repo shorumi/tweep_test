@@ -9,7 +9,7 @@ services:
       - sidekiq
 
   redis:
-    image: 'redis:3.2-alpine'
+    image: 'redis:5.0.8-alpine'
 
   sidekiq:
     depends_on:
